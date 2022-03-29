@@ -1,0 +1,19 @@
+{
+  "name": "cloudflareip",
+  "version": "1.0.0",
+  "description": "differentiate between cloudflare's ip and real user's ip",
+  "main": "cloudflareIP",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tawan475/cloudflareIP.git"
+  },
+  "author": "tawan475",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tawan475/cloudflareIP/issues"
+  },
+  "homepage": "https://github.com/tawan475/cloudflareIP#readme"
+}
