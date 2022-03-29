@@ -1,6 +1,6 @@
 {
   "name": "@tawan475/cloudflareip",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "differentiate between cloudflare's ip and real user's ip",
   "main": "cloudflareIP.js",
   "scripts": {
