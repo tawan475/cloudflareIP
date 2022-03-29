@@ -1,4 +1,5 @@
 const range_check = require("range_check");
+const ipaddr = require("ipaddr.js");
 
 module.exports = class cloudflareIP {
     constructor(range) {
@@ -7,22 +8,18 @@ module.exports = class cloudflareIP {
     }
 
     isCloudflareIP(req) {
-        let headerIP = req.headers['cf-connecting-ip'];
-        if (!headerIP) return false;
+        let ip = req.socket.remoteAddress || req.remoteAddress;
+        if (!ipaddr.isValid(ip)) return false;
+        let processedIp = ipaddr.process(ip);
 
-        let IP = req.connection.remoteAddress || req.remoteAddress;
-        if (!range_check.isIP(IP)) return false;
-        let IPver = range_check.version(IP);
-        if (IPver === 4) return range_check.inRange(IP, this.range.v4);
-        if (IPver === 6) return range_check.inRange(IP, this.range.v6);
+        if (processedIp instanceof ipaddr.IPv4) {
+            return range_check.inRange(processedIp.toString(), range.v4)
+        }
+
+        if (processedIp instanceof ipaddr.IPv6) {
+            return range_check.inRange(processedIp.toString(), range.v6)
+        }
+
         return false;
-
-    }
-
-    getRealIP(req) {
-        let headerIP = req.headers['cf-connecting-ip'];
-        let IP = req.connection.remoteAddress || req.remoteAddress;
-        if (!headerIP) return IP;
-        return headerIP;
     }
 }

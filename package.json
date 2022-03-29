@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/tawan475/cloudflareIP#readme",
   "dependencies": {
+    "ipaddr.js": "^2.0.1",
     "range_check": "^2.0.4"
   }
 }
