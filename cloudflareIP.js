@@ -8,7 +8,7 @@ module.exports = class cloudflareIP {
     }
 
     isCloudflareIP(req) {
-        let ip = req.socket.remoteAddress || req.remoteAddress;
+        let ip = req.headers['x-incoming-ip'] || req.socket.remoteAddress || req.remoteAddress;
         if (!ipaddr.isValid(ip)) return false;
         let processedIp = ipaddr.process(ip);
 
